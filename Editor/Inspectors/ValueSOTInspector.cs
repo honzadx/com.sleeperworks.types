@@ -30,7 +30,7 @@ namespace AmeWorks.ScriptableFlow.Editor.Inspectors
                 _editable = EditorGUILayout.Toggle("Edit Value", _editable);
                 using (new EditorGUI.DisabledScope(!_editable))
                 {
-                    _target.value = RuntimeFieldDrawer<TValue>.DrawField("Runtime Value", _target.value);
+                    _target.value = FieldDrawer<TValue>.DrawField("Runtime Value", _target.value);
                 }
             }
             serializedObject.ApplyModifiedProperties();

@@ -7,9 +7,9 @@ namespace AmeWorks.ScriptableFlow.Runtime.Types
     [CreateAsset(true)]
     public abstract class ValueSOT<T> : PersistentIdSO
     {
-        [SerializeField] internal T _defaultValue;
+        [SerializeField] protected internal T _defaultValue;
 
-        [NonSerialized] internal T _runtimeValue;
+        [NonSerialized] protected internal T _runtimeValue;
         
         public T defaultValue => _defaultValue;
 
