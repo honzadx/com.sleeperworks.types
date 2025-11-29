@@ -16,5 +16,7 @@ namespace AmeWorks.ScriptableFlow.Runtime.Types
             value.colorSpace = _defaultValue.colorSpace;
             value.mode = _defaultValue.mode;
         }
+        
+        public static implicit operator Gradient (GradientSO gradientSO) => gradientSO.value;
     }
 }

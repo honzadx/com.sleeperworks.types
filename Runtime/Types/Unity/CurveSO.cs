@@ -18,5 +18,7 @@ namespace AmeWorks.ScriptableFlow.Runtime.Types
                 postWrapMode = _defaultValue.postWrapMode
             };
         }
+        
+        public static implicit operator AnimationCurve (CurveSO curveSO) => curveSO.value;
     }
 }
