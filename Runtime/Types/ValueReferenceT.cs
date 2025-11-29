@@ -10,6 +10,8 @@ namespace AmeWorks.ScriptableFlow.Runtime.Types
         [SerializeField] protected internal T _value;
         [SerializeField] protected internal ValueSOT<T> _scriptableValue;
         
+        public Action<T> valueChangedEvent;
+        
         public T value {
             get => _useScriptableReference ? _scriptableValue.value : _value;
             set {
@@ -21,6 +23,7 @@ namespace AmeWorks.ScriptableFlow.Runtime.Types
                 {
                     _value = value;
                 }
+                valueChangedEvent?.Invoke(value);
             }
         }
     }

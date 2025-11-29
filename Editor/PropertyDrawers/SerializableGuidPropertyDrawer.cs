@@ -1,3 +1,4 @@
+using AmeWorks.ScriptableFlow.Editor.Helpers;
 using AmeWorks.ScriptableFlow.Runtime;
 using UnityEditor;
 using UnityEngine;
@@ -11,8 +12,9 @@ namespace AmeWorks.ScriptableFlow.Editor.PropertyDrawers
         {
             var serializableGuid = (SerializableGuid)property.boxedValue;
             EditorGUI.LabelField(position, label);
-            position.x += EditorGUIUtility.labelWidth + 2;
-            position.width -= EditorGUIUtility.labelWidth + 2;
+            var offset = 2 - EditorGUIFunctions.GetIndentOffset();
+            position.x += EditorGUIUtility.labelWidth + offset;
+            position.width -= EditorGUIUtility.labelWidth + offset;
             using (new EditorGUI.DisabledScope(true))
             {
                 var displayText = serializableGuid.isValid ? serializableGuid.guid : "<Invalid>";

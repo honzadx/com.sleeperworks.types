@@ -5,6 +5,11 @@ namespace AmeWorks.ScriptableFlow.Editor.Helpers
 {
     public static class EditorGUIFunctions
     {
+        public static float GetIndentOffset()
+        {
+            return EditorGUI.indentLevel * 15f;
+        }
+        
         public static void DrawMonoScript(ScriptableObject target)
         {
             MonoScript script = MonoScript.FromScriptableObject(target);

@@ -1,3 +1,4 @@
+using System;
 using AmeWorks.ScriptableFlow.Editor.Helpers;
 using AmeWorks.ScriptableFlow.Runtime.Types;
 using UnityEditor;
@@ -31,6 +32,17 @@ namespace AmeWorks.ScriptableFlow.Editor.PropertyDrawers
             if (reference._useScriptableReference)
             {
                 reference._scriptableValue = (TSO)EditorGUI.ObjectField(position, reference._scriptableValue, typeof(TSO), false);
+                
+                if (reference._scriptableValue)
+                {
+                    using (new EditorGUI.DisabledScope(true))
+                    {
+                        if (EditorApplication.isPlaying)
+                            reference._scriptableValue._runtimeValue = FieldDrawer<TType>.DrawField("Value", reference._scriptableValue._runtimeValue);
+                        else
+                            reference._scriptableValue._defaultValue = FieldDrawer<TType>.DrawField("Value", reference._scriptableValue._defaultValue);
+                    }
+                }
             }
             else
             {
@@ -58,6 +70,9 @@ namespace AmeWorks.ScriptableFlow.Editor.PropertyDrawers
     [CustomPropertyDrawer(typeof(CurveReference))]
     public class CurveReferencePropertyDrawer : ValueReferencePropertyDrawer<CurveReference, CurveSO, AnimationCurve> { }
     
+    [CustomPropertyDrawer(typeof(GradientReference))]
+    public class GradientReferencePropertyDrawer : ValueReferencePropertyDrawer<GradientReference, GradientSO, Gradient> { }
+
     [CustomPropertyDrawer(typeof(Vector2Reference))]
     public class Vector2ReferencePropertyDrawer : ValueReferencePropertyDrawer<Vector2Reference, Vector2SO, Vector2> { }
     
